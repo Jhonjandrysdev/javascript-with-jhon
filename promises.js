@@ -64,7 +64,6 @@ export default async function classPromises() {
 
   try {
     const valor = await miPromiseWithAsync();
-
     console.log(valor);
   } catch (error) {
     console.log(error, "ASYNC / AWAIT");
@@ -72,3 +71,5 @@ export default async function classPromises() {
     console.log("FINALLy");
   }
 }
+
+
