@@ -1,5 +1,5 @@
 const idInterval = setInterval(() => {
-    console.log('Sin detenerse');
-}, 1000)
+  console.log("Sin detenerse");
+}, 1000);
 
-clearInterval(idInterval)
+clearInterval(idInterval);
