@@ -49,7 +49,6 @@ function resultPromiseProduct() {
       console.error(err);
     });
 }
-
 resultPromiseProduct();
 
 /*CREAR PROMESAS UNA QUE SE EJECUTE EN 1000 MILISEGUNDOS Y OTRA EN 1500 MILISEGUNDOS
@@ -63,8 +62,8 @@ function myThirdPromise() {
   }, 1000);
   return promise;
 }
+const myValuePromise = myThirdPromise(); // obteniendo el valor de myThirdPromise
 
-const myValuePromise = myThirdPromise();
 function getResultThirdPromise() {
   const secondPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -130,6 +129,8 @@ const promise3 = new Promise((resolve, reject) => {
     }, 1000);
   });
 
+
+
   const carro = {
     llantas: 4,
     motor: true,
@@ -159,8 +160,103 @@ Promise.race([promise3, promise4]).then((value) => {
     console.log(err)
 })
 
-Promise.allSettled([promise3, promise4]).then((value) => {
+const values = Promise.allSettled([promise3, promise4]).then((value) => {
     console.log(value)
 }).catch((err) => {
     console.log(err)
 })
+
+/*1. Simular una petición a una API: Crea una función que simule una petición a una API. Esta función debe retornar una promesa que se resuelva con un objeto de datos después de un tiempo aleatorio.*/
+
+const MAC = {
+    Procesador: "M1",
+    RAM: 8,
+    SSD: 256,
+    Cargador: true,
+    Precio: `$3.000.000`
+}
+ function getVAlueAPI(paramValue){
+   const myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+                if(paramValue){
+                    resolve(MAC)
+                }else{
+                    reject("El equipo no es apto para la tarea")
+                }
+            })
+        },10000)
+
+    return myPromise
+}
+ function resultAPI(){
+ 
+    getVAlueAPI(true).then((value) => {
+        console.log(value)
+    }).catch((err) => {
+        console.log(err)
+    })
+
+    
+}
+
+resultAPI()
+
+
+//Encadenar promesas: Crea una serie de promesas en cadena para realizar varias tareas secuencialmente. Por ejemplo, simular la descarga de un archivo, su descompresión y su procesamiento.
+
+function downloadProcess(param){
+    const downloadPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+          if(param === undefined){
+          reject("Ingresa un valor")
+          }
+          else if(param){
+            resolve("PROMESA RESUELTA - DESCARGA COMPLETADA")
+          } else{
+            reject("HA HABIDO UN ERROR EN LA DESCARGA")
+          }
+      }, 3000)
+    })
+    return downloadPromise
+  }
+  
+  function decompressionProcess(param){
+    console.log(param)
+    const decompressionPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+          if(param){
+            resolve("SE HA INICIADO LA DESCOMPRENSIÓN")
+          } 
+      }, 5000)
+    })
+    return decompressionPromise
+  }
+  
+  function prosecutionProcess(param){
+    const prosecutionPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(param){
+          resolve("PROCESAMIENTO DE ARCHIVOS REALIZADO Y FINALIZADO")
+        }
+      }, 7000)
+    })
+    return prosecutionPromise
+  }
+  
+  function getValueDownloadAandDecompressionProcess(paramValue){
+    downloadProcess(paramValue).then((valor) => {
+      console.log(valor)
+      return decompressionProcess(paramValue)
+    }).then((decompressionValue) => {
+      console.log(decompressionValue)
+      return prosecutionProcess(paramValue)
+    }).then((prosecutionValue) => {
+      console.log(prosecutionValue)
+    }).catch((err) => {
+      console.log(err)
+    }) 
+  }
+  
+  getValueDownloadAandDecompressionProcess(true)
+
+  
