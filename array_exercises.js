@@ -23,3 +23,15 @@ function UppercaseName(names){
 console.log(UppercaseName(nombres))
 
 //Reducir un array: Calcula la suma total de los elementos de un array de números.
+
+function sumNumbers(num){
+    const totalValue =  num.reduce((acc, currentValue) => {
+
+        return acc += currentValue
+    }, 0)
+
+    return totalValue
+}
+
+console.log(sumNumbers(numbers))
+
