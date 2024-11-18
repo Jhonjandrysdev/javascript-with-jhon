@@ -259,4 +259,22 @@ function downloadProcess(param){
   
   getValueDownloadAandDecompressionProcess(true)
 
-  
+  //Obtener datos de una API y procesarlos: Realiza una petición a una API que retorne un array de objetos. Utiliza métodos de array para transformar y filtrar los datos.
+
+async function getAPIdate(){
+    const url = 'https://pokeapi.co/api/v2/pokemon'
+    try {
+        const data = await fetch(url)
+        const seeData = await data.json()
+        const values = seeData.results.map((val) => {
+            return val.name
+        })
+        document.body.textContent = JSON.stringify(values)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+getAPIdate()
+
+
