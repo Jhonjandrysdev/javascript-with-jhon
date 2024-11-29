@@ -92,8 +92,6 @@ myValuePromise
 //practica metodo
 const correo = "jhon@gmail.com";
 
-
-
 function validateEmail(email) {
   const promisee = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -261,20 +259,36 @@ function downloadProcess(param){
 
   //Obtener datos de una API y procesarlos: Realiza una petición a una API que retorne un array de objetos. Utiliza métodos de array para transformar y filtrar los datos.
 
-async function getAPIdate(){
-    const url = 'https://pokeapi.co/api/v2/pokemon'
-    try {
-        const data = await fetch(url)
-        const seeData = await data.json()
-        const values = seeData.results.map((val) => {
-            return val.name
-        })
-        document.body.textContent = JSON.stringify(values)
-    } catch (error) {
-        console.log(error)
-    }
+  const datos = [
+    {nombre: "Pedro", edad: 20},
+    {nombre: "Pablo", edad: 25},
+    {nombre: "Juan", edad: 40},
+  ]
+
+ function getAPIdate(value){
+    const valueFilter = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(value !== undefined){
+          resolve(value)
+        } else{
+          reject("No hay valores a validar")
+        }
+      }, 3000)
+    })
+    
+    return valueFilter
+  }
+
+async function filterDate(param){
+  try {
+    const date =  await getAPIdate(datos);
+    console.log(date)
+    const valueFilter = date.filter(e => e.nombre.toUpperCase(e.nombre).startsWith(param) || e.nombre.toLowerCase(e.nombre).startsWith(param))
+    console.log(valueFilter)
+  } catch (error) {
+    console.log("No se ha encontrado filtro del valor")
+  }
 }
 
-getAPIdate()
-
+  filterDate("j")
 
