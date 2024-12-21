@@ -59,12 +59,12 @@ const names = ["Juan", "Carlos", "Joji", "Maria", "Sofia", "Angela", "Ruben"];
 
 const ulList = document.createElement("ul");
 
-names.forEach((name) => {
-  const elementList = document.createElement("li");
-  elementList.textContent = name.toLocaleUpperCase();
-  ulList.appendChild(elementList);
-  document.body.appendChild(ulList);
-});
+//names.forEach((name) => {
+//  const elementList = document.createElement("li");
+//  elementList.textContent = name.toLocaleUpperCase();
+//  ulList.appendChild(elementList);
+//  document.body.appendChild(ulList);
+//});
 
 // 2. Filtrar solo los usuaurios menores a 30 y mostrar en una lista desordenada
 const personas = [
@@ -74,34 +74,82 @@ const personas = [
   { nombre: "Sofía", edad: 28 },
 ];
 
-function filtrar(persons) {
-  const value = persons.filter((person) => person.edad < 30);
-
-  value.forEach((name) => {
-    const list = document.createElement("ul");
-    const el = document.createElement("li");
-    list.appendChild(el);
-    document.body.appendChild(list);
-    el.textContent = name.nombre;
-  });
-}
-filtrar(personas);
+//function filtrar(persons) {
+//  const value = persons.filter((person) => person.edad < 30);
+//
+//  value.forEach((name) => {
+//    const list = document.createElement("ul");
+//    const el = document.createElement("li");
+//    list.appendChild(el);
+//    document.body.appendChild(list);
+//    el.textContent = name.nombre;
+//  });
+//}
+//filtrar(personas);
 
 // 3.  Usándo el mismo array anterior en otra Lista desordenada mostrar en color azul a la persona que se llama Juan importante: (es el único elemento que debe tener una clase)
 
 
 const otherNames = ["Juan", "Carlos", "Joji", "Maria", "Sofia", "Angela", "Ruben"];
 
-otherNames.forEach(nombre => {
-    const secondList = document.createElement('ul')
-    const itemList = document.createElement('li')
-    secondList.appendChild(itemList)
-    itemList.textContent = nombre
-    document.body.appendChild(secondList)
+//otherNames.forEach(nombre => {
+//    const secondList = document.createElement('ul')
+//    const itemList = document.createElement('li')
+//    secondList.appendChild(itemList)
+//    itemList.textContent = nombre
+//    document.body.appendChild(secondList)
+//
+//    if (nombre === "Juan") {
+//        itemList.className = "nombre"
+//    }
+//});
 
-    if (nombre === "Juan") {
-        itemList.className = "nombre"
-    }
-});
+
+//4. usando el mismo array de nombres crea una funcion que mediante el nombre del usuario que yo le paso lo debe borrar de la ul
+
+const kidsNames = ["Juan", "Carlos", "Joji", "Maria", "Sofia", "Angela", "Ruben"];
+
+function deleteName(elementNameDelete){
+
+  kidsNames.forEach((name) => {
+    const kidsList = document.createElement('ul')
+    const namekidList = document.createElement('li')
+    kidsList.appendChild(namekidList)
+    namekidList.textContent = name
+    document.body.appendChild(kidsList)
+    const button = document.createElement('button')
+    document.body.appendChild(button)
+    button.textContent = "Delete"
+
+    if(elementNameDelete === name.toUpperCase(elementNameDelete) || elementNameDelete === name.toLowerCase(elementNameDelete)){
+      kidsList.removeChild(namekidList)
+    }  
+
+  }) 
+}
+deleteName("angela")
+
+kidsNames.forEach((nameKids => {
+    const myList = document.createElement('ul')
+    const myListNames = document.createElement('li')
+    const myButton = document.createElement('button')
+
+    myList.appendChild(myListNames)
+    myList.appendChild(myButton)
+
+    myListNames.textContent = nameKids
+
+    document.body.appendChild(myList)
+    myButton.textContent = "Delete"
+
+
+    myButton.addEventListener('click', () => {
+      myList.remove(myListNames)
+  })
+}))
+
+
+
+
 
 
